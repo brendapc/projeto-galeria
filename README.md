@@ -1,5 +1,5 @@
-#Photo Galery
-photos displayed according to the selected filter 
+<h1>Photo Galery</h1>
+</h2>photos displayed according to the selected filter</h2>
 
 made with: Sass, Webpack, Bootstrap, jQuery
 
