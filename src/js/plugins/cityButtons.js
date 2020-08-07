@@ -1,11 +1,21 @@
 import $ from 'jquery'
 
-const duration = 600
+import { onLoadHtmlSuccess } from '../core/includes' 
+
+const duration = 300
 
 function filterByCity(city){
     $('[be-city]').each(function(i,e){
         const isTarget = $(this).attr('be-city') === city || city === null;
-        isTarget ? $(this).fadeIn(duration) : $(this).fadeOut(duration)
+        if(isTarget){
+            $(this).parent().removeClass('d-none')
+            $(this).fadeIn(duration)
+        }else{
+            $(this).fadeOut(duration, ()=>{
+                $(this).parent().addClass('d-none')
+            })
+
+        }
     })
 }
 
@@ -30,6 +40,10 @@ $.fn.cityButtons = function(){
     const btnGroup = $('<div>').addClass(['btn-group'])
     btnGroup.append(btns)
 
-    ('this').html(btnGroup)
+    $(this).html(btnGroup)
+    return this
 }
-$('[be-city-buttons]').cityButtons()
+onLoadHtmlSuccess(function(){
+    $('[be-city-buttons]').cityButtons()
+})
+
